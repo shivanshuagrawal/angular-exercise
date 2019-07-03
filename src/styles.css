@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+.font-14{
+    font-size: 14px!important;   
+}
+.form-control.ng-touched.ng-invalid {
+    border-color: #ED1C28 !important;
+    background-color: hsl(0, 96%, 98%) !important;
+}
+.light-seagreen {
+    background: lightseagreen;
+}

@@ -1,0 +1,18 @@
+<div class="row ml-md-2 mt-5 mr-0 ml-0">
+  <ng-container *ngIf="allBooking">
+    <div *ngFor="let booking of allBooking" class="col-md-3 col-12 mb-5">
+      <div class="card lightsteelblue">
+        <div class="card-header card-header-color">
+          <div>Booking Id: {{booking.id}}</div>
+          <div>Event Name: {{booking.eventName}}</div>
+        </div>
+        <div class="card-body text-center">
+          <button class="btn btn-primary my-2 mb-sm-0  font-14" type="button" (click)="OnDetails(booking.id)">Booking Details</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div *ngIf="allBooking && !allBooking.length>0">
+    <h2>No Bookings!</h2>
+  </div>
+</div>

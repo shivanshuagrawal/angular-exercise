@@ -1,0 +1,77 @@
+<ng-container *ngIf="this.bookingService.eventToBook">
+  <h3 class="text-center mt-4 ">Event Booking : {{this.bookingService.eventToBook.getEventName()}}</h3>
+  <div class="row mr-md-0 mx-2">
+    <div class="offset-md-1 col-md-5">
+      <img height="400px" width="500px" id="{{this.bookingService.eventToBook.getEventId()}}" src="../../assets/{{this.bookingService.eventToBook.getEventImage()}}"
+        class=" d-none d-md-block  mt-5" alt="...">
+      <img height="50%" width="100%" id="{{this.bookingService.eventToBook.getEventId()}}" src="../../assets/{{this.bookingService.eventToBook.getEventImage()}}"
+        class=" d-block d-md-none  mt-5" alt="...">
+      <div class="col-md-4 offset-md-8 col-6 offset-6 mt-2">{{this.bookingService.eventToBook.getEventDate()| date : 'dd MMMM yyyy'}}</div>
+      <div>
+        <b>Description:</b>
+      </div>
+      <div class="mb-4">{{this.bookingService.eventToBook.getEventDescp()}}</div>
+    </div>
+    <div class=" col-md-5 offset-md-1 mt-5 pr-0">
+      <div class="alert alert-danger offset-4 col-8" role="alert">
+        Available Seats {{this.bookingService.eventToBook.getAvailableSeats()}}
+      </div>
+      <form [formGroup]="bookingForm" action="">
+        <div class="">
+          <label>User Name</label>
+          <input class="form-control mb-2 col-md-7" type="text" name="name" formControlName="userName" id="name">
+          <div class="font-14" *ngIf="bookingForm.get('userName').touched && bookingForm.get('userName').invalid ">
+            <app-error *ngIf="bookingForm.get('userName').invalid && !bookingForm.get('userName').errors.required" [errorMsg]="ERRORMSGS.USERNAME_ERROR"></app-error>
+            <app-error *ngIf="bookingForm.get('userName').errors.required" [errorMsg]="ERRORMSGS.USERNAME_REQUIRED"></app-error>
+          </div>
+        </div>
+        <div class="">
+          <label>Email</label>
+          <input class="form-control mb-2 col-md-7" type="email" name="email" formControlName="email" id="email">
+          <div class="font-14" *ngIf="bookingForm.get('email').touched && bookingForm.get('email').invalid ">
+            <app-error *ngIf="bookingForm.get('email').invalid && !bookingForm.get('email').errors.required" [errorMsg]="ERRORMSGS.EMAIL_ERROR"></app-error>
+            <app-error *ngIf="bookingForm.get('email').errors.required" [errorMsg]="ERRORMSGS.EMAIL_REQUIRED"></app-error>
+          </div>
+        </div>
+        <div class="">
+          <label>Phone Number</label>
+          <input class="form-control mb-2 col-md-7" type="text" name="phoneNumber" formControlName="phoneNumber" id="phoneNumber">
+          <div class="font-14" *ngIf="bookingForm.get('phoneNumber').touched && bookingForm.get('phoneNumber').invalid ">
+            <app-error *ngIf="bookingForm.get('phoneNumber').invalid && !bookingForm.get('phoneNumber').errors.required" [errorMsg]="ERRORMSGS.PHONENUMBER_ERROR"></app-error>
+            <app-error *ngIf="bookingForm.get('phoneNumber').errors.required" [errorMsg]="ERRORMSGS.PHONENUMBER_REQUIRED"></app-error>
+          </div>
+        </div>
+        <div class="">
+          <label>Number of seats</label>
+          <select class="form-control mb-2 col-md-7" formControlName="noOfSeats" (click)="onSeatSelection()">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+          </select>
+          <div class="font-14" *ngIf="bookingForm.get('noOfSeats').touched && bookingForm.get('noOfSeats').invalid ">
+            <app-error *ngIf="bookingForm.get('noOfSeats').errors.required" [errorMsg]="ERRORMSGS.SEAT_REQUIRED"></app-error>
+            <app-error *ngIf="bookingForm.get('noOfSeats').invalid && !bookingForm.get('noOfSeats').errors.required" [errorMsg]="ERRORMSGS.SEAT_ERROR"></app-error>
+          </div>
+        </div>
+        <ng-container *ngIf="bookingForm.get('noOfSeats').value>1">
+          <div [formGroup]="bookingForm.get('attendees')" *ngFor="let s of arr;let i=index" class="">
+            <label>Name of Attendee {{i+2}}</label>
+            <input class="form-control mb-2 col-md-7" type="text" formControlName="attendee{{i+2}}" name="name" id="name">
+            <div class="font-14" *ngIf="bookingForm.get('attendees').get('attendee'+(i+2)).touched && bookingForm.get('attendees').get('attendee'+(i+2)).invalid ">
+              <app-error *ngIf="bookingForm.get('attendees').get('attendee'+(i+2)).invalid && !bookingForm.get('attendees').get('attendee'+(i+2)).errors.required"
+                [errorMsg]="ERRORMSGS.USERNAME_ERROR"></app-error>
+              <app-error *ngIf="bookingForm.get('attendees').get('attendee'+(i+2)).errors.required" [errorMsg]="ERRORMSGS.ATTENDEE_ERROR+(i+2)"></app-error>
+            </div>
+          </div>
+        </ng-container>
+        <div class="col-md-8 offset-md-1 col-8 offset-3 mb-5">
+          <button class="btn btn-secondary my-2 mb-sm-0 font-14 mr-4" type="submit" (click)="onSubmit()">Submit</button>
+          <button class="btn btn-secondary my-2 mb-sm-0 font-14" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>

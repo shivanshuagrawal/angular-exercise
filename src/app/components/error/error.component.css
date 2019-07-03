@@ -1,0 +1,10 @@
+.error {
+    width: 100%;
+    margin-top: 8px;
+}
+.fa.fa-exclamation-circle {
+    color:#ED1C28;
+}
+.msgColor {
+    color: #ED1C28;
+}

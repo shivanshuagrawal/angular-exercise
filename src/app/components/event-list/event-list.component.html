@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light light-seagreen py-3">
+  <a class="navbar-brand brown">
+    <b>EventSystem</b>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/eventslist']">Event List
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/bookinglist']">My Bookings
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+    </ul>
+    <form autocomplete="off" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" size="40" type="search" name="search" [(ngModel)]="search" (ngModelChange)="ngOnChanges($event)"
+        placeholder="SEARCH EVENTS" aria-label="Search">
+    </form>
+  </div>
+</nav>
+<div class="row ml-md-3 mt-5 mr-0 ml-0">
+  <ng-container *ngFor="let event of displayEvents">
+    <div class="col-md-3 col-12 mb-5">
+      <app-event [event]="event"></app-event>
+    </div>
+  </ng-container>
+  <div *ngIf="!displayEvents.length>0 && search">
+    <h2>No results found!</h2>
+  </div>
+</div>

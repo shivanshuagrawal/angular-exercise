@@ -1,0 +1,68 @@
+<ng-container *ngIf="bookingDetails">
+  <h3 class="text-center mt-4 ">Booking Successful!</h3>
+  <div class="row mr-md-0 mx-2">
+    <div class="offset-md-1 col-md-5">
+      <img height="400px" width="500px" id="{{bookingDetails.id}}" src="../../assets/{{bookingDetails.eventImage}}" class=" d-none d-md-block  mt-5"
+        alt="...">
+      <img height="50%" width="100%" id="{{bookingDetails.id}}" src="../../assets/{{bookingDetails.eventImage}}" class=" d-block d-md-none  mt-5"
+        alt="...">
+      <div class="col-md-4 offset-md-8 col-6 offset-6 mt-2">{{bookingDetails.eventDate| date : 'dd MMMM yyyy'}}</div>
+      <div>
+        <b>Description:</b>
+      </div>
+      <div>{{bookingDetails.eventDescp}}</div>
+    </div>
+    <div class=" col-md-5 offset-md-1 mt-5 pr-0">
+      <div>
+        <label class="font-weight-bold">Booking Id:&nbsp;&nbsp;</label>
+        {{bookingDetails.id}}
+      </div>
+      <div>
+        <label class="font-weight-bold">Event Name:&nbsp;&nbsp;</label>
+        {{bookingDetails.eventName}}
+      </div>
+      <div>
+        <label class="font-weight-bold">Event Date:&nbsp;&nbsp;</label>
+        {{bookingDetails.eventDate | date : 'dd MMMM yyyy'}}
+      </div>
+      <div>
+        <label class="font-weight-bold">User Name:&nbsp;&nbsp;</label>
+        {{bookingDetails.userName}}
+      </div>
+      <div>
+        <label class="font-weight-bold">Email:&nbsp;&nbsp;</label>
+        {{bookingDetails.email}}
+      </div>
+      <div>
+        <label class="font-weight-bold">Phone Number:&nbsp;&nbsp;</label>
+        {{bookingDetails.phoneNumber}}
+      </div>
+      <div>
+        <label class="font-weight-bold">No. of seats:&nbsp;&nbsp;</label>
+        {{bookingDetails.noOfSeats}}
+      </div>
+      <ng-container *ngIf="bookingDetails.attendees">
+        <div *ngIf="bookingDetails.attendees.attendee2">
+          <label class="font-weight-bold">Attendee 2:&nbsp;&nbsp;</label>
+          {{bookingDetails.attendees.attendee2}}
+        </div>
+        <div *ngIf="bookingDetails.attendees.attendee3">
+          <label class="font-weight-bold">Attendee 3:&nbsp;&nbsp;</label>
+          {{bookingDetails.attendees.attendee3}}
+        </div>
+        <div *ngIf="bookingDetails.attendees.attendee4">
+          <label class="font-weight-bold">Attendee 4:&nbsp;&nbsp;</label>
+          {{bookingDetails.attendees.attendee4}}
+        </div>
+        <div *ngIf="bookingDetails.attendees.attendee5">
+          <label class="font-weight-bold">Attendee 5:&nbsp;&nbsp;</label>
+          {{bookingDetails.attendees.attendee5}}
+        </div>
+        <div *ngIf="bookingDetails.attendees.attendee6">
+          <label class="font-weight-bold">Attendee 6:&nbsp;&nbsp;</label>
+          {{bookingDetails.attendees.attendee6}}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
